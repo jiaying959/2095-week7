@@ -94,7 +94,7 @@ module.exports = {
 
     //task 6 
     getBetweenYears: function(req,res){
-        Movie.where('year').gt(req.params.year1).lt(req.params.year2)
+        Movie.where('year').gt(req.params.year2).lt(req.params.year1)
             .exec(function (err, movie) {
                 if (err) return res.status(400).json(err);
                 if (!movie) return res.status(404).json();
@@ -106,7 +106,7 @@ module.exports = {
 
     //task 9 
     deleteBetweenYears: function(req,res){
-        Movie.deleteMany({year:{$gt:req.body.year1,$lt:req.body.year2}},function(err,movie){
+        Movie.deleteMany({year:{$gt:req.body.year2,$lt:req.body.year1}},function(err,movie){
             if(err) return res.status(400).json(err);
             if(!movie) return res.status(404).json(err);
             res.json(movie);
