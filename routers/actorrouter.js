@@ -96,7 +96,7 @@ module.exports = {
                 if (!movie) return res.status(404).json(err+"no movie");
                 if(err)return res.status(400).json(err);
                 Actor.findOne({_id:req.params.actorId},function(err,actor){
-                    if (!movie) return res.status(404).json(err+"no movie");
+                    if (!actor) return res.status(404).json(err+"no actor");
                     if(err)return res.status(400).json(err);
                     actor.movies.remove(movie._id);
                     actor.save(function(err){
@@ -106,5 +106,17 @@ module.exports = {
             })
 
         })
+    },
+    //extra task
+    deleteAllMovies: function(req,res){
+        Actor.findOne({ _id: req.params.id }, function (err,actor) {
+            if (!actor) return res.status(404).json(err+"no actor");
+            if(err)return res.status(400).json(err);
+            actor.movies.splice(0, actor.movies.length);
+            actor.save(function(err){
+                if(err)return res.status(500).json(err);
+                res.json(actor);
+            })
+        });
     }
 };

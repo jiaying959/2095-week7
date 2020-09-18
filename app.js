@@ -33,7 +33,8 @@ app.delete('/actors/:id', actors.deleteOne);
 app.delete('/actors/:id/deletemovies',actors.deleteOneAndMovies);
 //task 3 
 app.delete('/actors/:actorId/:movieId',actors.deleteFromMoiveList);
-
+//extra task 
+app.put('/actors/:id/deleteAllmovies',actors.deleteAllMovies);
 //Movie RESTFul  endpoints
 app.get('/movies', movies.getAll);
 app.post('/movies', movies.createOne);
@@ -49,3 +50,4 @@ app.post('/movies/:id/actors', movies.addActor);
 app.get('/movies/:year1/:year2',movies.getBetweenYears);
 //task 9
 app.delete('/movies',movies.deleteBetweenYears);
+
